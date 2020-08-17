@@ -1,13 +1,13 @@
 @echo off
 :1
 if exist "%~dp0..\java\CommonFiles\Java64\JavaPortable.ini" (
-echo Java is already installed!
+echo Java is installed!
 ) else (
 echo Installing Java...
 goto getjava
 )
 
-:1
+:1a
 if exist "%~dp0tuinity-paperclip.jar" (
 echo Tuinity is already downloaded!
 ) else (
@@ -21,7 +21,7 @@ goto :eof
 :tutu
 echo Tuinity will now be downloaded
 powershell -Command "Invoke-WebRequest https://ci.codemc.io/job/Spottedleaf/job/Tuinity/lastSuccessfulBuild/artifact/tuinity-paperclip.jar -OutFile tuinity-paperclip.jar"
-:1
+:1b
 if exist "%~dp0tuinity-paperclip.jar" (
 echo Tuinity was sucessfully downloaded!
 pause
@@ -50,10 +50,11 @@ exit
 set /p tudownload="Tuinity needs to be downloaded, would you like to do this now? (y/n): "
 if /i "%tudownload%" == "y" (goto tutu) else (goto wellthen)
 
-:runserver
-"%~dp0..\java\CommonFiles\Java64\bin\java.exe" -jar -Xmx1536m -Xms512m tuinity-paperclip.jar nogui
-pause
-
 :getjava
 powershell -Command "Invoke-WebRequest https://download3.portableapps.com/portableapps/Java64/jPortable64_8_Update_241_online.paf.exe?20190321 -OutFile ..\java\jportable_online.paf.exe"
 ..\java\jportable_online.paf.exe
+goto 1
+
+:runserver
+"%~dp0..\java\CommonFiles\Java64\bin\java.exe" -jar -Xmx1536m -Xms512m tuinity-paperclip.jar nogui
+pause
