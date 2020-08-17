@@ -24,7 +24,7 @@
     powershell -Command "Invoke-WebRequest https://papermc.io/ci/job/Paper-1.16/lastSuccessfulBuild/artifact/paperclip.jar -OutFile paperclip.jar"
     goto CheckPaper
 
-@rem Checks if a server.properties file has already been generated, if not (on first run) it creates one and add custom motd
+@rem Checks if a server.properties file has already been generated, if not (on first run) it creates one and adds a custom motd
 :CheckServerProperties
     if exist "server.properties" (
        goto CheckEula
@@ -73,7 +73,6 @@
 @rem Doesn't actually delcine the eula, warns the user and returns to :SetEula
 :DeclineEula
     echo You must accept the EULA to continue...
-    pause
     goto SetEula
 
 @rem User input to choose min and max ram, followed by java command to start the server. Portable Java WIP
@@ -81,7 +80,6 @@
     set /p RamMin="Enter Minimum Ram Ammount (mb): "
        if /i "%RamMin%" LSS "512" (
            echo You need to allocate at least 512mb
-           pause
            goto StartServer
        )
     set /p RamMax="Enter Maximum Ram Ammount (mb): "
@@ -97,5 +95,5 @@
     echo  / .__/\_,_/ .__/\__/_/ / .__/_/\_,_/_//_/\__/ 
     echo /_/       /_/          /_/                     
     echo.
-       pause
-       exit
+pause
+exit
