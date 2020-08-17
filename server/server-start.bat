@@ -1,5 +1,13 @@
 @echo off
 
+@rem paperplane logo
+    echo                                 __             
+    echo    ___  ___ ____  ___ _______  / /__ ____  ___ 
+    echo   / _ \/ _ `/ _ \/ -_) __/ _ \/ / _ `/ _ \/ -_)
+    echo  / .__/\_,_/ .__/\__/_/ / .__/_/\_,_/_//_/\__/ 
+    echo /_/       /_/          /_/                     
+    echo.
+
 @rem Checks if paper is currently downloaded
 :CheckPaper
     if exist "%~dp0paperclip.jar" (
@@ -73,6 +81,7 @@
     set /p RamMin="Enter Minimum Ram Ammount (mb): "
        if /i "%RamMin%" LSS "512" (
            echo You need to allocate at least 512mb
+           pause
            goto StartServer
        )
     set /p RamMax="Enter Maximum Ram Ammount (mb): "
@@ -81,5 +90,12 @@
 
 @rem A common exit to point to 
 :CommonExit
-    pause
-    exit
+@rem paperplane logo
+    echo                                 __             
+    echo    ___  ___ ____  ___ _______  / /__ ____  ___ 
+    echo   / _ \/ _ `/ _ \/ -_) __/ _ \/ / _ `/ _ \/ -_)
+    echo  / .__/\_,_/ .__/\__/_/ / .__/_/\_,_/_//_/\__/ 
+    echo /_/       /_/          /_/                     
+    echo.
+       pause
+       exit
