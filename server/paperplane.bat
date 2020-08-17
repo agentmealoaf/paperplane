@@ -31,7 +31,7 @@
 
     ) else (
        break>"server.properties"
-       echo motd=\u00A7fA Portable Minecraft Server\u00A7r\nPowered by \u00A71PaperPlane> server.properties
+       echo motd=\u00A7rA Portable Minecraft Server\u00A7r\nPowered by \u00A71PaperPlane> server.properties
        goto CheckEula
        )
 
