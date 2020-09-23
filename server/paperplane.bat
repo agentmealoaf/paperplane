@@ -56,6 +56,7 @@
        if /i "%accept%" == "y" (goto AcceptEula)
        if /i "%accept%" == "n" (goto DeclineEula)
        if /i "%accept%" == "read" (goto ReadEula)
+       if else (goto SetEula)
 
 
 @rem Opens eula page in browser
@@ -78,12 +79,27 @@
 @rem User input to choose min and max ram, followed by java command to start the server. Portable Java WIP
 :StartServer
     set /p RamMin="Enter Minimum Ram Ammount (mb): "
-       if /i "%RamMin%" LSS "512" (
+       if /i %RamMin% LSS "512" (
            echo You need to allocate at least 512mb
            goto StartServer
        )
-    set /p RamMax="Enter Maximum Ram Ammount (mb): "
+       if /i %RamMin% GTR "512" (
+           goto StartServerMax
+        )
 
+@rem separated to prevent java error
+:StartServerMax
+    set /p RamMax="Enter Maximum Ram Ammount (mb): "
+        if /i %RamMax% LSS %RamMin% (
+            echo Your maximum can't be less than your minimum
+            goto StartServerMax
+        )
+        if /i %RamMax% GEQ %RamMin% (
+            goto javaStart
+        )
+
+@rem separated to accomadate for "max cant be more than min"
+:javaStart
     java -jar -Xmx%RamMax%m -Xms%RamMin%m paperclip.jar nogui
 
 @rem A common exit to point to 
